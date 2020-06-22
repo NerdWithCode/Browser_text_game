@@ -100,9 +100,9 @@ function(){
     alert("How the fuck did you manage to use a sword as an item..?");
 });
 var i_healthGlen = Tools.makeItem("Glenden health potion",20,"A foul, brown looking brew, but the merchent assures you\
-that it works (6 health)",
+ that it works (6 health)",
 function(){
-    if(player.gold <20){
+    if(player.gold < 20){
         game.print("The merchant informs you that the potion is for wounds, not eyesight, as he points out the price tag\
         on the bottle. You blush sheepishly, deciding to be a little more careful");
         return;
@@ -244,24 +244,17 @@ var setup = function(){
     You always here in the tales of the hero with only their trusty sword, but after your first fight, the whole\
     idea of not being as well equipt as possible sounds kind of silly.",
     ["Better sword","Healing potion","Glenbrook"],["New sword","Healing potion","Exit"],
-    [function(){
-        i_betterSword.onBuy();
-        storage.output = "While the merchant counts through your counts, you decide you will get rid of your old sword\
+    [Tools.makeItemFunction(i_betterSword, "Hunter's Arms & Apothecary",
+    "While the merchant counts through your counts, you decide you will get rid of your old sword\
         somewhere else;\
         it would not do well for your reputation to be pawning off such garbage here.\
         You look down at your new sword though, in its new scabard by your waist, and feel\
-        an odd sense of acomplishment"
-        game.getLocationByID("Hunter's Arms & Apothecary").reEnter();
-    },
-    function(){
-        i_healthGlen.onBuy();
-
-        game.getLocationByID("Hunter's Arms & Apothecary").reEnter();
-    },
-    function(){
-        game.print("You hear a 'Goodbye, good luck' from the merchant as you leave");
-        setTimeout(function(){switchLocation("Glenbrook");},1200);
-    }],
+        an odd sense of acomplishment"),
+    Tools.makeItemFunction(i_healthGlen, "Hunter's Arms & Apothecary", 
+    "You know, you really can't tell if you are being swindled here or not. Asking if it works\
+        for a fourth time in a row would probably be seen as disrespectful though, so you are forced to grit your teeth and grin.\
+        Adventurers buy potions... right? And this... is... one..? Apparently?"),
+    Tools.makeShopExit("You hear a 'Goodbye, good luck' from the merchant as you leave", "Glenbrook")],
     [i_betterSword, i_healthGlen]
     );
 

@@ -1,7 +1,9 @@
 var game_description;
 var game_options;
 
-var storeage=Object();
+var storage= {
+    output : ""
+};
 
 var makeHandle = function(h){
     var ret=" " + h;
@@ -365,7 +367,7 @@ var Tools ={
                     game.print("-----"+this.items[i].description);
                 }
             }
-            game.print("You have "+parseInt(player.gold)+"gold");
+            game.print("You have "+parseInt(player.gold)+" Gold");
         }
 
         toret.hasItemsLeft = function(){
@@ -385,6 +387,11 @@ var Tools ={
                 game.print("There is nothing more for sale");
             }
             for(let i = 0 ; i < this.transitions.length;i++){
+                if(i < this.items.length){
+                    if(this.items[i].inShop === false){
+                        continue;
+                    }
+                }
                 let f = this.functions[i];
                 game.addButton(this.transitionDiologue[i],f);
             }
@@ -420,6 +427,25 @@ var Tools ={
         var toret = this.makeLocationBase(name,"",[]);
         toret.announce = function(){}
         toret.enter = func;
+    },
+
+    makeItemFunction : function(item, store, output){
+        return function(){
+            item.onBuy();
+            if(item.inShop){
+                return;
+            }
+            storage.output = output;
+            game.getLocationByID(store).reEnter();
+        };
+    },
+
+    makeShopExit : function(speech, location){
+        return function(){
+            game.print(speech);
+            game_options.innerHTML = "";
+            setTimeout(function(){switchLocation(location);},1200);
+        };
     }
 }
 
