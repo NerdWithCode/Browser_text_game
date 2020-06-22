@@ -2,7 +2,8 @@ var game_description;
 var game_options;
 
 var storage= {
-    output : ""
+    output : "",
+    bought : false
 };
 
 var makeHandle = function(h){
@@ -399,7 +400,9 @@ var Tools ={
 
         toret.reEnter = function(){
             game.addGap(2);
-            game.print("\"Thanks for the purchase!\"");
+            if(storage.bought){
+                game.print("\"Thanks for the purchase!\"");
+            }
             game.print(storage.output);
             game_options.innerHTML="";
             this.enter();
@@ -429,13 +432,14 @@ var Tools ={
         toret.enter = func;
     },
 
-    makeItemFunction : function(item, store, output){
+    makeItemFunction : function(item, store, output, bought = true){
         return function(){
             item.onBuy();
             if(item.inShop){
                 return;
             }
             storage.output = output;
+            storage.bought = bought;
             game.getLocationByID(store).reEnter();
         };
     },
