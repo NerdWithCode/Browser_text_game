@@ -12,7 +12,7 @@ var Wolf = function(vic){
     w.performCombat = function(){
         let me = this;
         let choice = getRandom(1,10);
-        if(me.health < 0){
+        if(me.health <= 0){
             me.isAlive = false;
             return;
         }
