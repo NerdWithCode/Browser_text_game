@@ -8,7 +8,7 @@ the world. This part is already like 5 times longer than what I first made thoug
 1 strange encounter type thing between each. This one also allows you to interact via website as oppossed to via pop ups. \
 </p><br><p>Well, that about wraps it up! Cya!",[],[]);*/
 
-var Gorskith = function(){
+var Gorskith = function(vic){
     let g = generateBaseEnemy("Gorskith", 20, 14);
     
     g.performCombat = function(){
@@ -16,6 +16,8 @@ var Gorskith = function(){
         alert("Not yet implimented");
         me.isAlive = false;
     }
+
+    g.victorySpeech = vic;
 
     return g;
 }
@@ -35,7 +37,7 @@ charges up from the bank, ragged club flailing wildly",Goblin_Scout(
     knew goblin blood smelt so damn bad?"
 ),"Should be changed by processes");
 
-Tools.makeEnemyEncounter("A Gorskith emerges from a stream", "A strange mix of a water and rock elemental, and commonly \
+Tools.makeEnemyEncounter("A Gorskith emerges from a stream!", "A strange mix of a water and rock elemental, and commonly \
 spotted where the two elements would meet. This is all you learnt about the Gorskith from the folks at the in in Glenbrook. \
 You probably should have asked more about them, such as how to run away from them, given that something matching their description \
 just formed out from a nearby puddle...", Gorskith(
@@ -48,7 +50,7 @@ var riverEncounters = function(loc){
     let choice = getRandom(1,5);
     if(choice <= 2){
         game.getLocationByID("A Goblin Scout from the river!").endLocation = loc;
-        switchLocation("A Goblin scout from the river!");
+        switchLocation("A Goblin Scout from the river!");
     }
     else{
         game.getLocationByID("A Gorskith emerges from a stream!").endLocation = loc;
@@ -85,6 +87,14 @@ Or, you hope it is. After all, your boots were more form over function, all the 
 none of the padding or support. Your feet are killing you. But, probably no more than the nearby Gorskith if you don't keep going",
 ["riverEncounter2","riverEncounter1_Reverse"],
 ["Onwards!","Back towards Glenbrook"])
+
+Tools.makeLocation("The mountain looms ahead...", "The river flows down into a very, <i>very</i> small looking cave. \
+Chances are, you don't want to be going down there, and <i>probably</i> have already missed the exit you were going for. \
+Welp, follow the river and then go up the mountain. These were the instructions you were given, and the mountain is here, \
+so up you go then. Further up you see the trail you think you were suppossed to get to.</p><p> \
+ The climb looks pretty sheer, however, so you probably won't be able to come back down again.",
+ ["Mountain pass", "riverEncounter2_Reverse"],
+ ["Climb up the mountain","Turn back for now"]);
 
 var setup = function(){
     game_description = document.getElementById("description");
