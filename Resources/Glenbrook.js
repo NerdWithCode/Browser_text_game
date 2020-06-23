@@ -265,9 +265,9 @@ Tools.makeProcess("DB_Gold_Give",function(){
 Tools.makeLocation("The start", "Here you are at your start of your adventures journey.\
 You believe your first order of business should be to go to the nearby town of Glenbrook, as it should have more oportunities for you than\
 the village you have been staying in. As you touch the trusty sword at your side you feel ready for anything...",
-/*["Ah, a wolf","Glenbrook Outskirts", "DB_Gold_Give"],
-["Begin your quest!", "Debug tp Glenbrook", "Debug gold"]);*/
-["Ah, a wolf"],["Begin your quest!"]);
+["Ah, a wolf","Glenbrook Outskirts", "DB_Gold_Give"],
+["Begin your quest!", "Debug tp Glenbrook", "Debug gold"]);
+/*["Ah, a wolf"],["Begin your quest!"]);*/
 
 Tools.makeEnemyEncounter("Ah, a wolf","No sooner have you stepped into the forest when suddenly a wolf steps in front of your path\
 While you have spent a long time slaying mighty dragons in your head but now that there is an enemy in front of you the whole\
